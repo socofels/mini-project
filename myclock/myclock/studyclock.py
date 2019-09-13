@@ -107,7 +107,7 @@ class StudyTime(object):
 
 def down():
     while True:
-        temp = input("输入Q关闭时钟")
+        temp = input(">>")
         if temp == "q":
             print("ok")
             exit()
@@ -121,8 +121,15 @@ def action():
     first_clock = StudyTime("55", "5")
     first_clock.add_time("10:00", "12:00")
     first_clock.add_time("14:00", "17:30")
-    first_clock.add_time("19:05", "21:00")
-    first_clock.add_time("22:17", "22:32")
+    first_clock.add_time("19:00", "21:00")
+    first_clock.add_time("23:00", "00:00")
+    your_clock = ""
+    for x in first_clock.time:
+        for k in x:
+            your_clock = your_clock + datetime.strftime(k, "%H:%M") + "   "
+        your_clock = your_clock +"\n"
+    print(f"""
+你的安排表:\n{your_clock}输入Q关闭时钟""")
     # 遍历时间线timeline中所有需要播报的时间点
     app.hellolable["text"] = f"欢迎使用番茄钟0.1,您的配置如下:\nclass hours: {first_clock.class_hours} minutes" \
                              f"\nbreak time: {first_clock.break_time} minutes\nTIP：在终端输入q关闭闹钟"
@@ -147,11 +154,13 @@ def action():
                 # 让app显示出来
                 app.master.deiconify()
                 # 运行app
+                print("\a")
                 app.mainloop()
     # 完成所有任务，退出程序
     exit()
 
 if __name__ == "__main__":
+
     thread1 = Thread(target=down, name="down")
     thread2 = Thread(target=action, name="loop")
     thread1.start()
