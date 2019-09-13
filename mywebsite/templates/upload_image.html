@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>upload image</title>
+</head>
+<body>
+<h1 style="text-align: center">上传你的图片</h1>
+# 默认情况下，enctype的值是application/x-www-form-urlencoded，不能用于文件上传，
+# 只有使用了multipart/form-data，才能完整的传递文件数据。
+<form action="/upload" method="POST" enctype="multipart/form-data">
+
+<input type="file" name="file">
+<input type="submit" value="Upload">
+
+</form>
+</body>
+</html>

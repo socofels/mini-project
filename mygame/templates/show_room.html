@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>{{room.name}} </h1>
+
+<!--pre the code in <pre> will reserve space and enter-->
+<pre>
+    <!--展示该房间的描述-->
+{{ room.description }}
+</pre>
+
+{% if room.name in ["death", "The End"] %}
+    <p><a href="/" name="cli">Play Again?</a> </p>
+{% else %}
+    <p>
+    <form action="/game" method="post">
+        -<label>
+        <input type="text" name="action">
+    </label><input type="submit">
+    </form>
+    </p>
+{% endif %}
+
+{% endblock %}
